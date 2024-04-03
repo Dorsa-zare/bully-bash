@@ -134,6 +134,10 @@ class Bullying extends Phaser.Scene {
     collectHeadphones(avatar, headphones) {
         // Hide the headphones when collected
         headphones.disableBody(true, true);
+
+        // Play the collision sound
+        this.sound.play('music');
+
     }
 
     // Show Heart Image
