@@ -9,18 +9,15 @@ class Forgiveness extends Phaser.Scene {
         // Add the rainbow image as the background
         const rainbow = this.add.image(0, 0, 'rainbow').setOrigin(0);
         rainbow.setScale(1);
-
         // Display the avatar sprite
         this.avatar = this.physics.add.sprite(this.game.config.width / 2, 471, `avatar`);
         this.avatar.setScale(3);
         this.avatar.setDepth(3);
-
+        
         // Call the method to create animations for avatar
         this.createAnimations();
-
         // Call the method to show text
         this.displayText();
-
     }
 
     update() {
@@ -36,7 +33,7 @@ class Forgiveness extends Phaser.Scene {
                 start: 0,
                 end: 3
             }),
-            frameRate: 12,
+            frameRate: 10,
             repeat: -1
         });
     }
@@ -48,7 +45,7 @@ class Forgiveness extends Phaser.Scene {
             font: "24px Arial",
             fill: "#00ff00", // Green color
             stroke: "#000000", // Black stroke
-            strokeThickness: 3, // Thickness of the stroke
+            strokeThickness: 5, // Thickness of the stroke
             align: "center"
         });
         forgivenessText.setOrigin(0.5);

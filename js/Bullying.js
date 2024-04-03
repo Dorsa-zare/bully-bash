@@ -6,9 +6,9 @@ class Bullying extends Phaser.Scene {
     }
 
     create() {
-        // Add the street image as the background
-        const street = this.add.image(0, 0, 'school').setOrigin(0);
-        street.setScale(1);
+        // Add the school image as the background
+        const school = this.add.image(0, 0, 'school').setOrigin(0);
+        school.setScale(1);
 
         // Display the avatar sprite
         this.avatar = this.physics.add.sprite(this.game.config.width / 2, 530, `avatar`);
@@ -56,6 +56,17 @@ class Bullying extends Phaser.Scene {
             callback: this.checkHeartVisibility,
             callbackScope: this
         });
+
+        this.headphonesGroup = this.physics.add.group();
+        this.timerEvent = this.time.addEvent({
+            delay: 7000, // 7 seconds
+            callback: this.generateHeadphones,
+            callbackScope: this,
+        });
+
+        // Enable collisions between the avatar and headphones
+        this.physics.add.overlap(this.avatar, this.headphonesGroup, this.collectHeadphones, null, this);
+
     }
 
     update() {
@@ -78,7 +89,7 @@ class Bullying extends Phaser.Scene {
 
         // If there are still words in the array
         if (nextBullyWord !== undefined) {
-            const randomX = Phaser.Math.Between(0, this.game.config.width);
+            const randomX = Phaser.Math.Between(50, 700);
 
             // Create a bully word
             const bullyWord = this.add.text(randomX, 0, nextBullyWord, {
@@ -90,19 +101,12 @@ class Bullying extends Phaser.Scene {
 
             // Add the bully word to the group
             this.bullyWords.add(bullyWord);
-
             // Set initial y position for the bully word
             bullyWord.y = -100; // Start above the canvas
-
             // Enable physics for the bully word
             this.physics.world.enable(bullyWord);
-
             // Set gravity for the bully word
             bullyWord.body.setGravityY(150);
-
-            // Set collide world bounds for the bully word
-            bullyWord.body.setCollideWorldBounds(true);
-
             // Increase the index for the next word
             this.bullyWordIndex++;
         } else {
@@ -117,6 +121,19 @@ class Bullying extends Phaser.Scene {
         this.heart = this.add.image(this.game.config.width - 50, 40, 'heart');
         this.heart.setScale(0.08);
         this.heart.visible = false; // Initially hide the heart image
+    }
+
+    generateHeadphones() {
+        const x = Phaser.Math.Between(50, 700);
+        const headphones = this.headphonesGroup.create(x, 0, 'headphones');
+        headphones.setScale(0.15);
+        headphones.setVelocityY(50); //Velocity to make headphones fall
+        headphones.setGravityY(200); // Apply gravity to the headphones
+    }
+
+    collectHeadphones(avatar, headphones) {
+        // Hide the headphones when collected
+        headphones.disableBody(true, true);
     }
 
     // Show Heart Image
@@ -134,7 +151,7 @@ class Bullying extends Phaser.Scene {
             // Display text indicating the heart has been broken
             this.brokenHeartText = this.add.text(this.game.config.width / 2, 325, "Your heart has been broken by the bullies.\nYou will have the chance to get revenge now.", {
                 font: "20px Arial",
-                fill: "#ff0000", // Red color
+                fill: "#000000",
                 align: "center"
             });
             this.brokenHeartText.setOrigin(0.5);
@@ -142,7 +159,7 @@ class Bullying extends Phaser.Scene {
             // Display text indicating that you tried to ignore the bullies
             this.ignoredBulliesText = this.add.text(this.game.config.width / 2, 325, "You tried to ignore what they said about you,\nBut, you are still hurt deep down. \nNow you will have the chance to get revenge!", {
                 font: "18px Arial",
-                fill: "#ff0000", // Red color
+                fill: "#000000",
                 align: "center"
             });
             this.ignoredBulliesText.setOrigin(0.5);
@@ -158,11 +175,11 @@ class Bullying extends Phaser.Scene {
         // Add "Get Revenge" text
         const getRevengeText = this.add.text(this.game.config.width / 2 + 100, 400, "Get Revenge", {
             font: "20px Arial",
-            fill: "#ffffff", // White color
-            backgroundColor: "#ff0000",
+            fill: "#000000", // White color
+            backgroundColor: "#ffffff",
             padding: {
-                x: 10,
-                y: 5
+                x: 20,
+                y: 10
             },
             align: "center"
         });
@@ -176,11 +193,11 @@ class Bullying extends Phaser.Scene {
         // Add "Forgive" text
         const forgiveText = this.add.text(this.game.config.width / 2 - 100, 400, "Forgive", {
             font: "20px Arial",
-            fill: "#ffffff", // White color
-            backgroundColor: "#ff0000",
+            fill: "#000000", // White color
+            backgroundColor: "#ffffff",
             padding: {
-                x: 10,
-                y: 5
+                x: 20,
+                y: 10
             },
             align: "center"
         });

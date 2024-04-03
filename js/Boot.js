@@ -24,6 +24,9 @@ class Boot extends Phaser.Scene {
         this.load.image(`school`, `assets/images/school.png`);
         // Load broken heart image
         this.load.image(`heart`, `assets/images/heart.png`);
+       // Load headphones image
+       this.load.image(`headphones`, `assets/images/headphone.png`);
+      
         // Load street image
         this.load.image(`street`, `assets/images/street.png`);
         // Load car image
