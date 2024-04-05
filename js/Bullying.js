@@ -191,7 +191,7 @@ class Bullying extends Phaser.Scene {
         getRevengeText.setInteractive(); // Make text clickable
         getRevengeText.on('pointerdown', () => {
             // Transition to the play scene
-            this.scene.start('play');
+            this.scene.start('revenge');
         });
 
         // Add "Forgive" text

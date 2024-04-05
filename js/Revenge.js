@@ -1,7 +1,7 @@
-class Play extends Phaser.Scene {
+class Revenge extends Phaser.Scene {
     constructor() {
         super({
-            key: `play`
+            key: `revenge`
         });
         // Initialize bullies array
         this.bullies = [];
