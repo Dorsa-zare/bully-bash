@@ -40,6 +40,9 @@ class Boot extends Phaser.Scene {
         this.load.image(`rainbow`, `assets/images/rainbow.png`);
         // Load the sky image for Limbo scene
         this.load.image(`sky`, `assets/images/sky.png`);
+        // Load the cloud image for Limbo scene
+        this.load.image(`cloud`, `assets/images/cloud.png`);
+
 
         this.load.on(`complete`, () => {
             this.scene.start(`limbo`);
