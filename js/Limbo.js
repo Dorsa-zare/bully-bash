@@ -8,6 +8,8 @@ class Limbo extends Phaser.Scene {
     }
 
     create() {
+
+       
         // Set up physics
         this.physics.world.setBounds(0, 0, this.game.config.width, this.game.config.height);
         this.physics.world.gravity.y = 500; // Set gravity
@@ -54,7 +56,7 @@ class Limbo extends Phaser.Scene {
         this.cloudsGroup = this.add.group();
 
         // Define y positions for the clouds
-        const cloudYPositions = [200, 300, 400, 500];
+        const cloudYPositions = [150, 260, 380, 510];
 
         // Add clouds with specified y positions
         for (let i = 0; i < cloudYPositions.length; i++) {
