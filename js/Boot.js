@@ -43,6 +43,9 @@ class Boot extends Phaser.Scene {
         // Load the cloud image for Limbo scene
         this.load.image(`cloud`, `assets/images/cloud.png`);
 
+        // Load the mountain image for hell scene
+        this.load.image(`mountain`, `assets/images/mountain.gif`);
+
 
         this.load.on(`complete`, () => {
             this.scene.start(`hell`);
