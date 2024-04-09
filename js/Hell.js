@@ -24,9 +24,6 @@ class Hell extends Phaser.Scene {
         // Display the fire gif
         this.fire = this.add.image(this.game.config.width / 2 - 310, 470, 'fire').setScale(0.4);
 
-        // Start the animation to make the fire smaller and bigger
-        this.animateFire();
-
         // Display bully
         this.addBully();
         // Initialize bullies array
@@ -53,16 +50,6 @@ class Hell extends Phaser.Scene {
         } else {
             this.avatar.setVelocityY(0);
         }
-    }
-
-    animateFire() {
-        // Tween to make the fire smaller and bigger in a loop
-        this.tweens.add({
-            targets: this.fire,
-            scale: { value: 0.36, duration: 1000, ease: 'Power1' }, // Make the fire smaller over 2 seconds
-            yoyo: true, // Make the tween reverse
-            repeat: -1 // Repeat indefinitely
-        });
     }
 
     addBully() {

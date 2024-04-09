@@ -29,12 +29,7 @@ class Limbo extends Phaser.Scene {
 
         // Set up keyboard input for player movement
         this.cursors = this.input.keyboard.createCursorKeys();
-
-        // Set up collisions
-        this.physics.add.collider(this.avatar, this.cloudsGroup, this.onCloudCollision, null, this);
     }
-
-
 
 
 
@@ -59,24 +54,28 @@ class Limbo extends Phaser.Scene {
         this.cloudsGroup = this.add.group();
 
         // Define y positions for the clouds
-        const cloudYPositions = [50, 150, 250, 350, 420, 540];
+        const cloudYPositions = [200, 300, 400, 500];
 
         // Add clouds with specified y positions
         for (let i = 0; i < cloudYPositions.length; i++) {
-            // Create a cloud sprite and add it to the group
-            let cloud = this.add.sprite(Phaser.Math.Between(0, this.game.config.width), cloudYPositions[i], 'cloud');
+          
+            let cloud = this.physics.add.sprite(Phaser.Math.Between(0, this.game.config.width), cloudYPositions[i], 'cloud').setImmovable();
+            cloud.body.setAllowGravity(false);
             this.cloudsGroup.add(cloud);
-            cloud.setScale(0.20);
+            cloud.setScale(0.25);
 
             // Set up cloud movement tween
             this.tweens.add({
                 targets: cloud,
                 x: Phaser.Math.Between(0, this.game.config.width), // Random destination x-coordinate
-                duration: Phaser.Math.Between(2000, 5000), // Random duration
+                duration: 4000, // Random duration
                 yoyo: true,
                 repeat: -1
             });
+            // Set up collisions
+            this.physics.add.collider(this.avatar, this.cloudsGroup, this.onCloudCollision(this.avatar, cloud));
         }
+
     }
 
     onCloudCollision(avatar, cloud) {
