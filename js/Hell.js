@@ -31,6 +31,9 @@ class Hell extends Phaser.Scene {
         this.addBully();
         // Initialize bullies array
         this.bullies = [];
+
+        // Play the hell music
+        this.sound.play('hell music', { loop: true });
     }
 
     update() {
