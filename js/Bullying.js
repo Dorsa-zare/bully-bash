@@ -123,16 +123,18 @@ class Bullying extends Phaser.Scene {
         for (let i = 0; i < 3; i++) {
             const heart = this.add.image(this.game.config.width - 50, 40 + i * 50, 'heart');
             heart.setScale(0.08);
-            heart.visible = false; // Initially hide the hearts
             this.heartsGroup.add(heart);
+            heart.setActive(false); // Initially hide the hearts
+            heart.visible = false;
         }
     }
 
-    showHeartImage() {
+    showHeartImage( avatar, word) {
         // Show the hearts when the avatar collides with a bully word
-        this.heartsGroup.getChildren().forEach((heart, index) => {
-            heart.visible = true;
-        });
+        let heart = this.heartsGroup.getFirstDead()
+        heart.setActive(true);
+        heart.visible = true;
+        word.destroy();
     }
 
 
@@ -154,7 +156,7 @@ class Bullying extends Phaser.Scene {
 
         // Reduce the opacity of the bully words
         this.bullyWords.getChildren().forEach((bullyWord) => {
-            bullyWord.setAlpha(0.7); //Opacity
+            bullyWord.setAlpha(0.6); //Opacity
         });
 
         // Check if the music is not already playing
