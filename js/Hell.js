@@ -4,25 +4,21 @@ class Hell extends Phaser.Scene {
             key: `hell`
         });
 
-        // Initialize bullies array
-        this.bullies = [];
-
     }
 
     create() {
         // Add the mountain image as the background
         this.mountain = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height, 'mountain').setOrigin(0);
-        this.mountain.setScale(1.8); // Set the scale to 1.8 for larger size
+        this.mountain.setScale(1.8); //Scale of the background image
 
         // Display the avatar sprite
         this.avatar = this.physics.add.sprite(this.game.config.width / 2, 510, 'avatar').setScale(2);
-        this.avatar.setBounce(0.2); // Add bounce to the avatar
 
         // Set up keyboard input for player movement
         this.cursors = this.input.keyboard.createCursorKeys();
 
         // Enable the camera to follow the avatar
-        this.cameras.main.setBounds(0, 0, this.game.config.width * 1.8, this.game.config.height); // Adjusted bounds based on mountain scale
+        this.cameras.main.setBounds(0, 0, this.game.config.width * 1.8, this.game.config.height); //Based on mountain scale
         this.cameras.main.startFollow(this.avatar);
 
         // Display bully
@@ -42,9 +38,9 @@ class Hell extends Phaser.Scene {
         }
     
         if (this.cursors.up.isDown) {
-            this.avatar.setVelocityY(-160); // Adjust the velocity as needed
+            this.avatar.setVelocityY(-160); 
         } else if (this.cursors.down.isDown) {
-            this.avatar.setVelocityY(160); // Adjust the velocity as needed
+            this.avatar.setVelocityY(160); 
         } else {
             this.avatar.setVelocityY(0);
         }
@@ -52,52 +48,31 @@ class Hell extends Phaser.Scene {
     
 
     addBully() {
-        // Define the number of bully
-        const numBully = 8;
-        const bullies = []; // Array to store the positions of existing bullies
-
-        for (let i = 0; i < numBully; i++) {
-            let x, y;
-            let validPosition = false;
-
-            // Repeat until a valid position is found
-            while (!validPosition) {
-                // Generate random coordinates within the bottom half of the canvas
-                x = Phaser.Math.Between(100, this.game.config.width);
-                y = Phaser.Math.Between(this.game.config.height / 2 + 60, this.game.config.height);
-
-                // Check if the position conflicts with existing bullies
-                let conflicting = false;
-                for (const bully of bullies) {
-                    if (Phaser.Math.Distance.Between(x, y, bully.x, bully.y) < 100) {
-                        conflicting = true;
-                        break;
-                    }
-                }
-
-                // If there's no conflict, set validPosition to true
-                if (!conflicting) {
-                    validPosition = true;
-                }
-            }
-
-            // Add bully sprite
-            const bully = this.physics.add.sprite(x, y, 'bully');
-
-            // Make bully pushable
-            bully.setPushable(true);
+        //The number of bullies
+        const numBullies = 2;
+    
+        // Create a group to hold the bullies
+        this.bulliesGroup = this.add.group();
+    
+        // The positions of the bullies
+        const bullyPositions = [
+            { x: 100, y: 300 },
+            { x: 600, y: 450 }
+        ];
+    
+        // Add bullies at the specified positions
+        for (let i = 0; i < numBullies; i++) {
+            const position = bullyPositions[i];
+            const bully = this.physics.add.sprite(position.x, position.y, 'bully');
 
             // Scale the bully 
-            bully.setScale(1.6);
-
+            bully.setScale(1.8);
+    
             // Set the depth of the bully sprite to appear behind the avatar
             bully.setDepth(1);
-            // Enable collisions with the world bounds
-            bully.setCollideWorldBounds(true);
-
-            // Add the bully to the bullies array
-            this.bullies.push(bully);
-
+    
+            // Add the bully to the group
+            this.bulliesGroup.add(bully);
         }
     }
 
