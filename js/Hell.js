@@ -21,6 +21,12 @@ class Hell extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, this.game.config.width * 1.8, this.game.config.height); //Based on mountain scale
         this.cameras.main.startFollow(this.avatar);
 
+        // Display the fire gif
+        this.fire = this.add.image(this.game.config.width / 2 - 310, 470, 'fire').setScale(0.4);
+
+        // Start the animation to make the fire smaller and bigger
+        this.animateFire();
+
         // Display bully
         this.addBully();
         // Initialize bullies array
@@ -36,30 +42,42 @@ class Hell extends Phaser.Scene {
         } else {
             this.avatar.setVelocityX(0);
         }
-    
+
         if (this.cursors.up.isDown) {
-            this.avatar.setVelocityY(-160); 
+            this.avatar.setVelocityY(-160);
         } else if (this.cursors.down.isDown) {
-            this.avatar.setVelocityY(160); 
+            this.avatar.setVelocityY(160);
         } else {
             this.avatar.setVelocityY(0);
         }
     }
-    
+
+    animateFire() {
+        // Tween to make the fire smaller and bigger in a loop
+        this.tweens.add({
+            targets: this.fire,
+            scale: { value: 0.36, duration: 1000, ease: 'Power1' }, // Make the fire smaller over 2 seconds
+            yoyo: true, // Make the tween reverse
+            repeat: -1 // Repeat indefinitely
+        });
+    }
 
     addBully() {
         //The number of bullies
-        const numBullies = 2;
-    
+        const numBullies = 5;
+
         // Create a group to hold the bullies
         this.bulliesGroup = this.add.group();
-    
+
         // The positions of the bullies
         const bullyPositions = [
-            { x: 100, y: 300 },
-            { x: 600, y: 450 }
+            { x: 170, y: 450 },
+            { x: 420, y: 120 },
+            { x: 630, y: 330 },
+            { x: 850, y: 180 },
+            { x: 1370, y: 200 }
         ];
-    
+        6
         // Add bullies at the specified positions
         for (let i = 0; i < numBullies; i++) {
             const position = bullyPositions[i];
@@ -67,10 +85,10 @@ class Hell extends Phaser.Scene {
 
             // Scale the bully 
             bully.setScale(1.8);
-    
+
             // Set the depth of the bully sprite to appear behind the avatar
             bully.setDepth(1);
-    
+
             // Add the bully to the group
             this.bulliesGroup.add(bully);
         }

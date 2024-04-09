@@ -45,7 +45,8 @@ class Boot extends Phaser.Scene {
 
         // Load the mountain image for hell scene
         this.load.image(`mountain`, `assets/images/mountain.gif`);
-
+        // Load the fire image for hell scene
+        this.load.image(`fire`, `assets/images/fire.gif`);
 
         this.load.on(`complete`, () => {
             this.scene.start(`hell`);
