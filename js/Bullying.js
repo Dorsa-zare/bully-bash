@@ -41,8 +41,11 @@ class Bullying extends Phaser.Scene {
         // Set collision detection between avatar and canvas bounds
         this.physics.world.setBoundsCollision(true, true, true, false);
 
-        // Handle Heart Image
-        this.handleHeartImage();
+        // Create heart group
+        this.heartsGroup = this.add.group();
+
+        // Generate hearts
+        this.generateHearts();
 
         // Flag to track if heart is visible
         this.heartVisible = false;
@@ -115,13 +118,23 @@ class Bullying extends Phaser.Scene {
         }
     }
 
-    // Handle Heart Image
-    handleHeartImage() {
-        // Define the heart image and position it at the top right corner
-        this.heart = this.add.image(this.game.config.width - 50, 40, 'heart');
-        this.heart.setScale(0.08);
-        this.heart.visible = false; // Initially hide the heart image
+    generateHearts() {
+        // Create three hearts with a vertical gap of 50 pixels
+        for (let i = 0; i < 3; i++) {
+            const heart = this.add.image(this.game.config.width - 50, 40 + i * 50, 'heart');
+            heart.setScale(0.08);
+            heart.visible = false; // Initially hide the hearts
+            this.heartsGroup.add(heart);
+        }
     }
+
+    showHeartImage() {
+        // Show the hearts when the avatar collides with a bully word
+        this.heartsGroup.getChildren().forEach((heart, index) => {
+            heart.visible = true;
+        });
+    }
+
 
     generateHeadphones() {
         const x = Phaser.Math.Between(50, 700);
@@ -129,25 +142,30 @@ class Bullying extends Phaser.Scene {
         headphones.setScale(0.15);
         headphones.setVelocityY(50); //Velocity to make headphones fall
         headphones.setGravityY(200); // Apply gravity to the headphones
+        this.headphonesGroup.setDepth(5);
     }
 
     collectHeadphones(avatar, headphones) {
-        // Hide the headphones when collected
-        headphones.disableBody(true, true);
+        // Set the position of the headphones to match the avatar's position
+        headphones.setPosition(avatar.x, 500);
+        headphones.setScale(0.2);
+        headphones.setVelocityY(0); // Remove Velocity 
+        headphones.setGravityY(0); // Remove gravity to the headphones
 
-        // Play the collision sound
-        this.sound.play('music');
+        // Reduce the opacity of the bully words
+        this.bullyWords.getChildren().forEach((bullyWord) => {
+            bullyWord.setAlpha(0.7); //Opacity
+        });
 
-    }
-
-    // Show Heart Image
-    showHeartImage(avatar, bullyWord) {
-        // Show the heart image if it's not already visible
-        if (!this.heartVisible) {
-            this.heart.visible = true;
-            this.heartVisible = true;
+        // Check if the music is not already playing
+        if (!this.musicPlaying) {
+            // Play the collision sound
+            this.sound.play('music');
+            // Set the flag to indicate that music is playing
+            this.musicPlaying = true;
         }
     }
+
 
     // Check if heart is visible after 20 seconds
     checkHeartVisibility() {
