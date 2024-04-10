@@ -98,31 +98,41 @@ class Limbo extends Phaser.Scene {
     createClouds() {
         // Create a group to hold the clouds
         this.cloudsGroup = this.add.group();
-
-        // Define y positions for the clouds
+    
+        // Y positions for the clouds
         const cloudYPositions = [260, 410, 550, 680];
-
+    
+        // The range for cloud movement on the x-axis
+        const minX = 100;
+        const maxX = 600;
+    
+        // Fixed speed and duration for cloud movement
+        const speed = 200; 
+        const duration = 3000; 
+    
         // Add clouds with specified y positions
         for (let i = 0; i < cloudYPositions.length; i++) {
-
+    
             let cloud = this.physics.add.sprite(Phaser.Math.Between(0, this.game.config.width), cloudYPositions[i], 'cloud').setImmovable();
             cloud.body.setAllowGravity(false);
             this.cloudsGroup.add(cloud);
             cloud.setScale(0.25);
-
+    
             // Set up cloud movement tween
             this.tweens.add({
                 targets: cloud,
-                x: Phaser.Math.Between(0, this.game.config.width), // Random destination x-coordinate
-                duration: 4000, // Random duration
+                x: Phaser.Math.Between(minX, maxX), 
+                duration: duration,
                 yoyo: true,
                 repeat: -1
             });
+    
             // Set up collisions
             this.physics.add.collider(this.avatar, this.cloudsGroup, this.onCloudCollision(this.avatar, cloud));
         }
-
     }
+    
+    
 
     onCloudCollision(avatar, cloud) {
         // Check if the avatar is above the cloud
