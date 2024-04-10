@@ -60,13 +60,13 @@ class Revenge extends Phaser.Scene {
 
     update() {
 
-       // Check if ending text is visible and bullyvoice sound has not been played
-       if (this.congratsText.visible && !this.bullyVoicePlayed) {
-        // Play bullyvoice sound
-        this.sound.play('bullyvoice');
-        // Set the flag to true to indicate that the sound has been played
-        this.bullyVoicePlayed = true;
-    }
+        // Check if ending text is visible and bullyvoice sound has not been played
+        if (this.congratsText.visible && !this.bullyVoicePlayed) {
+            // Play bullyvoice sound
+            this.sound.play('bullyvoice');
+            // Set the flag to true to indicate that the sound has been played
+            this.bullyVoicePlayed = true;
+        }
         // Movement controls for the avatar
         this.avatar.setVelocity(0);
 
@@ -236,6 +236,7 @@ class Revenge extends Phaser.Scene {
         if (this.flowerCounter >= 8) {
             // Display the ending text
             this.congratsText.setVisible(true);
+            this.accident();
         }
     }
 
@@ -262,6 +263,26 @@ class Revenge extends Phaser.Scene {
 
         this.congratsText.setOrigin(0.5);
         this.congratsText.setVisible(false); // Initially invisible
+
     }
+
+
+    accident() {
+        // Add the karma bus sprite
+        const karmaBus = this.physics.add.sprite(4000, 500, 'karma');
+        karmaBus.setScale(0.50);
+        karmaBus.setVelocityX(-500); // Set velocity to move from left to right
+
+        // Set collision between karma bus and redavatar to push it outside
+        this.physics.add.collider(karmaBus, this.redavatar, () => {
+            this.congratsText.setVisible(false);
+            // Wait for the karma bus to exit the canvas before transitioning to the limbo scene
+            this.time.delayedCall(3000, () => {
+                // Transition to the limbo scene
+                this.scene.start('limbo');
+            });
+        });
+    }
+
 }
 

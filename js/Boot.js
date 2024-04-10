@@ -42,6 +42,8 @@ class Boot extends Phaser.Scene {
         this.load.audio('bullyvoice', 'assets/sounds/bullyvoice.mp3');
         // Load flower image
         this.load.image(`flower`, `assets/images/flower.png`);
+        // Load karma bus image
+        this.load.image(`karma`, `assets/images/karma.png`);
         // Load rainbow image
         this.load.image(`rainbow`, `assets/images/rainbow.png`);
         // Load the graveyard image for Limbo scene
@@ -71,7 +73,7 @@ class Boot extends Phaser.Scene {
         this.load.audio('hell music', 'assets/sounds/hellmusic.mp3');
 
         this.load.on(`complete`, () => {
-            this.scene.start(`hell`);
+            this.scene.start(`revenge`);
         });
     }
 

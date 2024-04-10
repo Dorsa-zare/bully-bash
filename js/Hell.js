@@ -13,6 +13,7 @@ class Hell extends Phaser.Scene {
 
         // Display the avatar sprite
         this.avatar = this.physics.add.sprite(this.game.config.width / 2, 510, 'avatar').setScale(2);
+        this.avatar.setDepth(4);
 
         // Set up keyboard input for player movement
         this.cursors = this.input.keyboard.createCursorKeys();
