@@ -48,6 +48,16 @@ class Boot extends Phaser.Scene {
         this.load.image(`graveyard`, `assets/images/graveyard.png`);
         // Load the cloud image for Limbo scene
         this.load.image(`cloud`, `assets/images/cloud.png`);
+        // Load the judgement image for Limbo scene
+        this.load.image(`judgement`, `assets/images/judgement.png`);
+        // Load the sky image for verdict scene
+        this.load.image(`sky`, `assets/images/sky.png`);
+        // Load the angel image for verdict scene
+        this.load.image(`angel`, `assets/images/angel.png`);
+        // Load the gates image for verdict scene
+        this.load.image(`gates`, `assets/images/gates.png`);
+        // Load the cloud platform image for verdict scene
+        this.load.image(`cloudplatform`, `assets/images/cloudplatform.png`);
 
         // Load the mountain image for hell scene
         this.load.image(`mountain`, `assets/images/mountain.gif`);
@@ -58,7 +68,7 @@ class Boot extends Phaser.Scene {
         this.load.audio('hell music', 'assets/sounds/hellmusic.mp3');
 
         this.load.on(`complete`, () => {
-            this.scene.start(`limbo`);
+            this.scene.start(`verdict`);
         });
     }
 
