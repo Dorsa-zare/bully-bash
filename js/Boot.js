@@ -28,6 +28,8 @@ class Boot extends Phaser.Scene {
         this.load.image(`headphones`, `assets/images/headphone.png`);
         // Load the audio file
         this.load.audio('music', 'assets/sounds/music.mp3');
+        // Load the boom sound effect file
+        this.load.audio('boom', 'assets/sounds/boom.mp3');
         // Load street image
         this.load.image(`street`, `assets/images/street.png`);
         // Load car image
@@ -52,7 +54,7 @@ class Boot extends Phaser.Scene {
         this.load.audio('hell music', 'assets/sounds/hellmusic.mp3');
 
         this.load.on(`complete`, () => {
-            this.scene.start(`hell`);
+            this.scene.start(`bullying`);
         });
     }
 

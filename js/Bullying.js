@@ -3,6 +3,8 @@ class Bullying extends Phaser.Scene {
         super({
             key: `bullying`
         });
+        this.headphonesCollected = false; // Flag to indicate headphones are not collected
+
     }
 
     create() {
@@ -120,7 +122,7 @@ class Bullying extends Phaser.Scene {
 
     generateHearts() {
         // Create three hearts with a vertical gap of 50 pixels
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 10; i++) {
             const heart = this.add.image(this.game.config.width - 50, 40 + i * 50, 'heart');
             heart.setScale(0.08);
             this.heartsGroup.add(heart);
@@ -129,13 +131,21 @@ class Bullying extends Phaser.Scene {
         }
     }
 
-    showHeartImage( avatar, word) {
-        // Show the hearts when the avatar collides with a bully word
-        let heart = this.heartsGroup.getFirstDead()
-        heart.setActive(true);
-        heart.visible = true;
+    showHeartImage(avatar, word) {
+        // Check if the headphones are not collected
+        if (!this.headphonesCollected) {
+            // Play the collision sound effect
+            this.sound.play('boom', { volume: 0.2 });
+
+            // Show the hearts when the avatar collides with a bully word
+            let heart = this.heartsGroup.getFirstDead()
+            heart.setActive(true);
+            heart.visible = true;
+        }
+        // Destroy the bully word
         word.destroy();
     }
+
 
 
     generateHeadphones() {
@@ -153,6 +163,9 @@ class Bullying extends Phaser.Scene {
         headphones.setScale(0.2);
         headphones.setVelocityY(0); // Remove Velocity 
         headphones.setGravityY(0); // Remove gravity to the headphones
+
+        // Set flag to indicate that headphones are collected
+        this.headphonesCollected = true;
 
         // Reduce the opacity of the bully words
         this.bullyWords.getChildren().forEach((bullyWord) => {
