@@ -32,6 +32,9 @@ class Verdict extends Phaser.Scene {
 
         // Display dialogue bubbles
         this.displayDialogue();
+
+        // Add the "Next" button
+        this.addNextButton();
     }
 
     addBullies() {
@@ -74,33 +77,53 @@ class Verdict extends Phaser.Scene {
         this.time.delayedCall(2000, () => {
             this.showDialogue("So, what's the verdict?", this.game.config.width / 2 - 200, this.game.config.height / 2 + 100);
         }, [], this);
-    
+
         this.time.delayedCall(4000, () => {
             this.showDialogue("Yall are going to hell for sure.", this.game.config.width / 2 + 50, this.game.config.height / 2);
         }, [], this);
-    
+
         this.time.delayedCall(7000, () => {
             this.showDialogue("But why me?", this.game.config.width / 2 - 200, this.game.config.height / 2 + 100);
         }, [], this);
-    
+
         this.time.delayedCall(9000, () => {
-            this.showDialogue("Are you being for real?\nYou mass-murdered people!", this.game.config.width / 2 + 50, this.game.config.height / 2 );
+            this.showDialogue("Are you being for real?\nYou mass-murdered people!", this.game.config.width / 2 + 50, this.game.config.height / 2);
         }, [], this);
 
         this.time.delayedCall(12000, () => {
             this.showDialogue("Hell with my bullies?\nSounds like a blast.", this.game.config.width / 2 - 200, this.game.config.height / 2 + 100);
         }, [], this);
     }
-    
+
 
     showDialogue(text, posX, posY) {
         // Create a dialogue bubble
         const bubble = this.add.image(posX, posY, 'dialogueBubble').setScale(0.4);
-    
+
         // Add text to the dialogue bubble
         const bubbleText = this.add.text(bubble.x - 100, bubble.y - 20, text, { font: "16px Arial", fill: "#000" });
     }
-    
+
+    addNextButton() {
+        // Add "Next" button text
+        const buttonText = this.add.text(this.game.config.width - 70, this.game.config.height - 50, "Next", {
+            font: "24px Arial",
+            fill: "#ffffff", // White color
+            backgroundColor: "#000000",
+            padding: {
+                x: 10,
+                y: 5
+            },
+            align: "center"
+        });
+        buttonText.setOrigin(0.5);
+        buttonText.setInteractive(); // Make text clickable
+        buttonText.on('pointerdown', () => {
+            // Transition to the "hell" scene
+            this.scene.start('hell');
+        });
+    }
+
 
 }
 
