@@ -58,6 +58,8 @@ class Boot extends Phaser.Scene {
         this.load.image(`gates`, `assets/images/gates.png`);
         // Load the cloud platform image for verdict scene
         this.load.image(`cloudplatform`, `assets/images/cloudplatform.png`);
+        // Load the dialogueBubble image for verdict scene
+        this.load.image(`dialogueBubble`, `assets/images/dialogueBubble.png`);
 
         // Load the mountain image for hell scene
         this.load.image(`mountain`, `assets/images/mountain.gif`);
