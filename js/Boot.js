@@ -38,6 +38,8 @@ class Boot extends Phaser.Scene {
         this.load.image(`bully`, `assets/images/bully.png`);
         // Load the sound effect for bullies (yaaa)
         this.load.audio('yaaa', 'assets/sounds/yaaa.mp3');
+        // Load the sound effect for bullies (singing)
+        this.load.audio('bullyvoice', 'assets/sounds/bullyvoice.mp3');
         // Load flower image
         this.load.image(`flower`, `assets/images/flower.png`);
         // Load rainbow image

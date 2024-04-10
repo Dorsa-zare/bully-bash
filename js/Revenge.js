@@ -7,6 +7,8 @@ class Revenge extends Phaser.Scene {
         this.bullies = [];
         // Initialize flower counter
         this.flowerCounter = 0;
+        // Boolean flag to track if the bullyvoice sound has been played
+        this.bullyVoicePlayed = false;
     }
 
     create() {
@@ -57,6 +59,14 @@ class Revenge extends Phaser.Scene {
     }
 
     update() {
+
+       // Check if ending text is visible and bullyvoice sound has not been played
+       if (this.congratsText.visible && !this.bullyVoicePlayed) {
+        // Play bullyvoice sound
+        this.sound.play('bullyvoice');
+        // Set the flag to true to indicate that the sound has been played
+        this.bullyVoicePlayed = true;
+    }
         // Movement controls for the avatar
         this.avatar.setVelocity(0);
 
@@ -249,6 +259,7 @@ class Revenge extends Phaser.Scene {
             stroke: ' #ff4d4d',
             strokeThickness: 10
         });
+
         this.congratsText.setOrigin(0.5);
         this.congratsText.setVisible(false); // Initially invisible
     }
