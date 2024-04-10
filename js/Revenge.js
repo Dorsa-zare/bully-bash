@@ -198,6 +198,8 @@ class Revenge extends Phaser.Scene {
     handleBusBullyCollision(bus, bully) {
         // Reset bus position and velocity
         this.resetBusPositionAndVelocity();
+        // Play 'yaaa' sound
+        this.sound.play('yaaa');
         // Handle bully collision
         bully.destroy();
         // Show flower at the collision position

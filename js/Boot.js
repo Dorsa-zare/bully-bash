@@ -36,6 +36,8 @@ class Boot extends Phaser.Scene {
         this.load.image(`bus`, `assets/images/bus.png`);
         // Load bully image
         this.load.image(`bully`, `assets/images/bully.png`);
+        // Load the sound effect for bullies (yaaa)
+        this.load.audio('yaaa', 'assets/sounds/yaaa.mp3');
         // Load flower image
         this.load.image(`flower`, `assets/images/flower.png`);
         // Load rainbow image
@@ -54,7 +56,7 @@ class Boot extends Phaser.Scene {
         this.load.audio('hell music', 'assets/sounds/hellmusic.mp3');
 
         this.load.on(`complete`, () => {
-            this.scene.start(`bullying`);
+            this.scene.start(`revenge`);
         });
     }
 
