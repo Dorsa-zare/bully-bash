@@ -63,14 +63,15 @@ class Boot extends Phaser.Scene {
 
         // Load the mountain image for hell scene
         this.load.image(`mountain`, `assets/images/mountain.gif`);
+        // Load the wood image for hell scene
+        this.load.image(`wood`, `assets/images/wood.png`);
         // Load the fire image for hell scene
         this.load.image(`fire`, `assets/images/fire.gif`);
-
         // Load the audio file
         this.load.audio('hell music', 'assets/sounds/hellmusic.mp3');
 
         this.load.on(`complete`, () => {
-            this.scene.start(`verdict`);
+            this.scene.start(`hell`);
         });
     }
 

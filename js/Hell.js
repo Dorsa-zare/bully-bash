@@ -29,6 +29,11 @@ class Hell extends Phaser.Scene {
         // Initialize bullies array
         this.bullies = [];
 
+        // Display wood
+        this.addWood();
+        // Initialize woods array
+        this.woods = [];
+
         // Play the hell music
         this.sound.play('hell music', { loop: true });
     }
@@ -67,7 +72,7 @@ class Hell extends Phaser.Scene {
             { x: 850, y: 180 },
             { x: 1370, y: 200 }
         ];
-        6
+        
         // Add bullies at the specified positions
         for (let i = 0; i < numBullies; i++) {
             const position = bullyPositions[i];
@@ -81,6 +86,37 @@ class Hell extends Phaser.Scene {
 
             // Add the bully to the group
             this.bulliesGroup.add(bully);
+        }
+    }
+    
+    addWood() {
+        //The number of bullies
+        const numWoods = 4;
+
+        // Create a group to hold the bullies
+        this.woodsGroup = this.add.group();
+
+        // The positions of the woods
+        const woodPositions = [
+            { x: 390, y: 180 },
+            { x: 680, y: 350 },
+            { x: 860, y: 230 },
+            { x: 1370, y: 260 }
+        ];
+        
+        // Add bullies at the specified positions
+        for (let i = 0; i < numWoods; i++) {
+            const position = woodPositions[i];
+            const wood = this.physics.add.sprite(position.x, position.y, 'wood');
+
+            // Scale the bully 
+            wood.setScale(0.11);
+
+            // Set the depth of the bully sprite to appear behind the avatar
+            wood.setDepth(1);
+
+            // Add the bully to the group
+            this.woodsGroup.add(wood);
         }
     }
 
