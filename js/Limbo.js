@@ -22,10 +22,18 @@ class Limbo extends Phaser.Scene {
         this.avatar.setBounce(0.2); // Add bounce to the avatar
         this.avatar.setAlpha(0.5); // Set alpha to 50%
         this.avatar.setTint(0xffffff);
-        this.avatar.setDepth(4); 
+        this.avatar.setDepth(4);
 
         // Enable physics for the avatar
         this.physics.add.existing(this.avatar);
+
+
+        
+        // Add introductory text
+        this.addIntroText();
+
+        // Add "Next" button
+        this.addNextButton();
 
         // Create clouds
         this.createClouds();
@@ -35,13 +43,14 @@ class Limbo extends Phaser.Scene {
 
         // Display the avatar sprite
         this.judgement = this.add.image(this.game.config.width / 2, 0, 'judgement').setScale(1);
-        this.judgement.setDepth(0); 
+        this.judgement.setDepth(0);
 
         // Set up keyboard input for player movement
         this.cursors = this.input.keyboard.createCursorKeys();
 
         // Initialize the camera's y position
         this.cameraY = this.avatar.y;
+
     }
 
 
@@ -124,6 +133,55 @@ class Limbo extends Phaser.Scene {
             // Adjust the avatar's position to stand on top of the cloud
             avatar.y = cloud.y - avatar.displayHeight / 2;
         }
+    }
+
+   addIntroText() {
+    // Add intro text
+    this.introText = this.add.text(this.game.config.width / 2 - 340, this.game.config.height / 2 + 600, 'You find yourself in Limbo, where lost souls wander until they navigate to the afterlife.', {
+        fontFamily: 'Arial',
+        fontSize: 18,
+        color: '#ffffff', 
+        align: 'center'
+    });
+    this.introText.setDepth(10);
+}
+
+    addNextButton() {
+        // Add "Next" button
+        this.nextButton = this.add.text(this.game.config.width / 2, this.game.config.height / 2 + 680, 'Next', {
+            fontFamily: 'Arial',
+            fontSize: 20,
+            color: '#000000',
+            backgroundColor: '#ffffff',
+            padding: {
+                x: 10,
+                y: 5
+            }
+        });
+        this.nextButton.setOrigin(0.5);
+        this.nextButton.setInteractive(); // Make the button clickable
+
+        // Set up event for clicking the "Next" button
+        this.nextButton.on('pointerdown', this.onNextButtonClick, this);
+    }
+
+    onNextButtonClick() {
+        // Hide the first text
+        this.introText.setVisible(false);
+        // Hide the "Next" button
+        this.nextButton.setVisible(false);
+        // Add the second sentence
+        this.addSecondSentence();
+    }
+
+    addSecondSentence() {
+        // Add the second sentence
+        this.secondSentence = this.add.text(this.game.config.width / 2 - 280, this.game.config.height / 2 + 600, 'Use the up arrow to jump and navigate the clouds to reach judgment.', {
+            fontFamily: 'Arial',
+            fontSize: 18,
+            color: '#ffffff',
+            align: 'center'
+        });
     }
 
 }
