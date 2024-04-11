@@ -51,6 +51,9 @@ class Limbo extends Phaser.Scene {
         // Initialize the camera's y position
         this.cameraY = this.avatar.y;
 
+         // Play the hell music
+         this.sound.play('limbo music', { loop: true });
+
     }
 
 

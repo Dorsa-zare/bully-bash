@@ -52,6 +52,10 @@ class Boot extends Phaser.Scene {
         this.load.image(`cloud`, `assets/images/cloud.png`);
         // Load the judgement image for Limbo scene
         this.load.image(`judgement`, `assets/images/judgement.png`);
+        // Load the audio file
+        this.load.audio('limbo music', 'assets/sounds/limbomusic.mp3');
+
+
         // Load the sky image for verdict scene
         this.load.image(`sky`, `assets/images/sky.png`);
         // Load the angel image for verdict scene

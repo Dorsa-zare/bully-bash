@@ -37,6 +37,7 @@ class Hell extends Phaser.Scene {
 
         // Play the hell music
         this.sound.play('hell music', { loop: true });
+        
     }
 
     update() {
