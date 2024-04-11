@@ -37,6 +37,12 @@ class Verdict extends Phaser.Scene {
         this.addNextButton();
     }
 
+    
+    
+    update() {
+        
+    }
+    
     addBullies() {
         // Positions for bullies
         const bullyPositions = [
@@ -52,12 +58,6 @@ class Verdict extends Phaser.Scene {
             const bully = this.bulliesGroup.create(position.x, position.y, 'bully').setScale(2); // Set scale for each bully
         });
     }
-
-
-    update() {
-
-    }
-
 
     createAnimations() {
         // Animation properties for the avatar
