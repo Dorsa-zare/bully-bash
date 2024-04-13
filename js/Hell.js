@@ -3,6 +3,13 @@ class Hell extends Phaser.Scene {
         super({
             key: `hell`
         });
+        this.woodsCollected = false; // Flag to indicate woods are not collected
+        this.fireSize = 0.4; // Initial size of the fire
+        this.originalFireSize = 0.4; // Original size of the fire
+        this.minFireSize = 0; // Minimum size of the fire
+        this.fireDecreaseRate = this.originalFireSize / 100; // Rate at which the fire size decreases
+        this.fireDecreaseDuration = 30000; // Duration for decreasing the fire size (in milliseconds)
+        this.fireDecreaseEvent = null; // Phaser timer event for decreasing fire size
 
     }
 
@@ -23,7 +30,10 @@ class Hell extends Phaser.Scene {
         this.cameras.main.startFollow(this.avatar);
 
         // Display the fire gif
-        this.fire = this.add.image(this.game.config.width / 2 - 310, 470, 'fire').setScale(0.4);
+        this.fire = this.physics.add.image(this.game.config.width / 2 - 310, 470, 'fire').setScale(this.fireSize);
+
+        // Start decreasing the fire size over 10 seconds
+        this.startDecreaseFireSizeTimer();
 
         // Display bully
         this.addBully();
@@ -35,9 +45,15 @@ class Hell extends Phaser.Scene {
         // Initialize woods array
         this.woods = [];
 
+        // Enable collisions between the avatar and woods
+        this.physics.add.overlap(this.avatar, this.woodsGroup, this.collectWoods, null, this);
+
+        // Enable collisions between the fire and woods
+        this.physics.add.overlap(this.fire, this.woodsGroup, this.handleFireWoodCollision, null, this);
+
         // Play the hell music
         this.sound.play('hell music', { loop: true });
-        
+
     }
 
     update() {
@@ -74,7 +90,7 @@ class Hell extends Phaser.Scene {
             { x: 850, y: 180 },
             { x: 1370, y: 200 }
         ];
-        
+
         // Add bullies at the specified positions
         for (let i = 0; i < numBullies; i++) {
             const position = bullyPositions[i];
@@ -90,7 +106,7 @@ class Hell extends Phaser.Scene {
             this.bulliesGroup.add(bully);
         }
     }
-    
+
     addWood() {
         //The number of bullies
         const numWoods = 4;
@@ -105,7 +121,7 @@ class Hell extends Phaser.Scene {
             { x: 860, y: 230 },
             { x: 1370, y: 260 }
         ];
-        
+
         // Add bullies at the specified positions
         for (let i = 0; i < numWoods; i++) {
             const position = woodPositions[i];
@@ -122,5 +138,61 @@ class Hell extends Phaser.Scene {
         }
     }
 
+    // Function to handle the collection of woods
+    collectWoods(avatar, wood) {
+        // Set the position of the wood sprite to match the avatar's position
+        wood.x = avatar.x;
+        wood.y = avatar.y + 25;
+        wood.setVelocityY(0); // Remove Velocity 
+        wood.body.setAllowGravity(false); // Disable gravity for the wood sprite
+        wood.setDepth(5);
+        // Set flag to indicate that woods are collected
+        this.woodsCollected = true;
+
+        // Check if all woods are collected
+    if (this.woodsGroup.countActive() === 0) {
+        // Transition to the "SecondChance" scene
+        this.scene.start('SecondChance');
+    }
+    }
+    // Method to start the timer for decreasing fire size
+    startDecreaseFireSizeTimer() {
+        this.fireDecreaseEvent = this.time.addEvent({
+            delay: this.fireDecreaseDuration / 100, // Decrease size every 1/100th of the duration
+            callback: this.decreaseFireSize,
+            callbackScope: this,
+            repeat: 100, // Repeat 100 times to achieve gradual decrease over 10 seconds
+            loop: false // Do not loop the event
+        });
+    }
+    // Method to decrease the size of the fire
+    decreaseFireSize() {
+        // Decrease fire size gradually
+        this.fireSize -= this.fireDecreaseRate;
+        this.fire.setScale(this.fireSize);
+
+        // If fire size becomes smaller than minimum size, stop the event
+        if (this.fireSize <= this.minFireSize) {
+            this.fireSize = this.minFireSize;
+            this.fire.setScale(this.fireSize);
+            this.fireDecreaseEvent.remove(); // Stop the timer event
+        }
+    }
+
+    // Method to reset the fire size to its original value
+    resetFireSize() {
+        this.fireSize = this.originalFireSize;
+        this.fire.setScale(this.fireSize);
+    }
+
+    // Method to handle collision between fire and wood
+    handleFireWoodCollision(fire, wood) {
+        // Reset the fire size to its original size
+        this.fireSize = this.originalFireSize;
+        this.fire.setScale(this.fireSize);
+
+        // Destroy the wood sprite
+        wood.destroy();
+    }
 
 }
