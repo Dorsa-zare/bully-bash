@@ -29,6 +29,10 @@ class SecondChance extends Phaser.Scene {
 
         // Add the "Next" button
         this.displayNextButton();
+
+          // Play the verdict music 
+          this.sound.play('verdict music', { loop: true });
+
     }
 
     update() { }
@@ -89,6 +93,8 @@ class SecondChance extends Phaser.Scene {
         buttonText.setOrigin(0.5);
         buttonText.setInteractive(); // Make text clickable
         buttonText.on('pointerdown', () => {
+             // Stop the music
+             this.sound.stopByKey('verdict music');
             // Transition to the "hell" scene
             this.scene.start('bullying');
         });

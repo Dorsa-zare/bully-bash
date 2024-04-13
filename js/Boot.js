@@ -44,8 +44,12 @@ class Boot extends Phaser.Scene {
         this.load.image(`flower`, `assets/images/flower.png`);
         // Load karma bus image
         this.load.image(`karma`, `assets/images/karma.png`);
-        // Load rainbow image
+
+        // Load rainbow image for forgiveness
         this.load.image(`rainbow`, `assets/images/rainbow.png`);
+        // Load the audio file
+        this.load.audio('forgiveness music', 'assets/sounds/forgivenessmusic.mp3');
+
         // Load the graveyard image for Limbo scene
         this.load.image(`graveyard`, `assets/images/graveyard.png`);
         // Load the cloud image for Limbo scene
@@ -66,6 +70,9 @@ class Boot extends Phaser.Scene {
         this.load.image(`cloudplatform`, `assets/images/cloudplatform.png`);
         // Load the dialogueBubble image for verdict scene
         this.load.image(`dialogueBubble`, `assets/images/dialogueBubble.png`);
+        // Load the audio file
+        this.load.audio('verdict music', 'assets/sounds/verdictmusic.mp3');
+
 
         // Load the mountain image for hell scene
         this.load.image(`mountain`, `assets/images/mountain.gif`);
@@ -77,7 +84,7 @@ class Boot extends Phaser.Scene {
         this.load.audio('hell music', 'assets/sounds/hellmusic.mp3');
 
         this.load.on(`complete`, () => {
-            this.scene.start(`SecondChance`);
+            this.scene.start(`verdict`);
         });
     }
 

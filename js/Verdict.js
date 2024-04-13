@@ -35,14 +35,18 @@ class Verdict extends Phaser.Scene {
 
         // Add the "Next" button
         this.addNextButton();
+
+        // Play the verdict music 
+        this.sound.play('verdict music', { loop: true });
+
     }
 
-    
-    
+
+
     update() {
-        
+
     }
-    
+
     addBullies() {
         // Positions for bullies
         const bullyPositions = [
@@ -111,6 +115,8 @@ class Verdict extends Phaser.Scene {
         buttonText.setOrigin(0.5);
         buttonText.setInteractive(); // Make text clickable
         buttonText.on('pointerdown', () => {
+            // Stop the verdict music
+            this.sound.stopByKey('verdict music');
             // Transition to the "hell" scene
             this.scene.start('hell');
         });
