@@ -148,13 +148,8 @@ class Hell extends Phaser.Scene {
         wood.setDepth(5);
         // Set flag to indicate that woods are collected
         this.woodsCollected = true;
+    }
 
-        // Check if all woods are collected
-    if (this.woodsGroup.countActive() === 0) {
-        // Transition to the "SecondChance" scene
-        this.scene.start('SecondChance');
-    }
-    }
     // Method to start the timer for decreasing fire size
     startDecreaseFireSizeTimer() {
         this.fireDecreaseEvent = this.time.addEvent({
@@ -193,6 +188,12 @@ class Hell extends Phaser.Scene {
 
         // Destroy the wood sprite
         wood.destroy();
+
+        // Check if there are no more woods on the screen
+        if (this.woodsGroup.countActive() === 0) {
+            // Transition to the "SecondChance" scene
+            this.scene.start('SecondChance');
+        }
     }
 
 }
