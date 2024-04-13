@@ -41,7 +41,7 @@ class Forgiveness extends Phaser.Scene {
 
     displayText() {
         // Display text indicating forgiveness
-        const forgivenessText = this.add.text(this.game.config.width / 2, 280, "You choose to forgive the bullies.\nLet's move forward with \nkindness and empathy.", {
+        const forgivenessText = this.add.text(this.game.config.width / 2, 280, "You chose to forgive the bullies.\nLet's move forward with \nkindness and empathy.", {
             font: "24px Arial",
             fill: "#00ff00", // Green color
             stroke: "#000000", // Black stroke
