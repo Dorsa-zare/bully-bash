@@ -62,7 +62,7 @@ class Limbo extends Phaser.Scene {
         this.cameraY = this.avatar.y;
 
         // Play the limbo music (Myself by Ramin Djawadi)
-        this.sound.play('limbo music', { loop: true });
+        this.sound.play('limbo music', { loop: true, volume:10 });
     }
 
 
@@ -174,12 +174,16 @@ class Limbo extends Phaser.Scene {
             this.bulliesGroup.setAlpha(0.6); // Set alpha to 50%
         });
     }
+    
+// Function to handle collision between avatar and cloud platform
+onCloudPlatformCollision(avatar, cloudplatform) {
+    // Stop the music
+    this.sound.stopByKey('limbo music');
 
-    // Function to handle collision between avatar and cloud platform
-    onCloudPlatformCollision(avatar, cloudplatform) {
-        // Transition to the verdict scene
-        this.scene.start('verdict');
-    }
+    // Transition to the verdict scene
+    this.scene.start('verdict');
+}
+
 
 
     addIntroText() {
