@@ -84,7 +84,7 @@ class Boot extends Phaser.Scene {
         this.load.audio('hell music', 'assets/sounds/hellmusic.mp3');
 
         this.load.on(`complete`, () => {
-            this.scene.start(`limbo`);
+            this.scene.start(`bullying`);
         });
     }
 
