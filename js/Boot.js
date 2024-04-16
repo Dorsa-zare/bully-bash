@@ -20,6 +20,21 @@ class Boot extends Phaser.Scene {
             endFrame: 9
         });
 
+
+        // Load title background image
+        this.load.image(`title image`, `assets/images/title.png`);
+        // Load start image 
+        this.load.image(`start`, `assets/images/start.png`);
+
+        // Load instructions1 image for bullying scene
+        this.load.image(`instructions1`, `assets/images/instructions1.png`);
+        // Load instructions2 image for bullying scene
+        this.load.image(`instructions2`, `assets/images/instructions2.png`);
+        // Load instructions3 image for bullying scene
+        this.load.image(`instructions3`, `assets/images/instructions3.png`);
+
+
+
         // Load school image
         this.load.image(`school`, `assets/images/school.png`);
         // Load broken heart image
@@ -84,7 +99,7 @@ class Boot extends Phaser.Scene {
         this.load.audio('hell music', 'assets/sounds/hellmusic.mp3');
 
         this.load.on(`complete`, () => {
-            this.scene.start(`bullying`);
+            this.scene.start(`bullying instructions`);
         });
     }
 
