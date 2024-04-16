@@ -27,11 +27,11 @@ class RevengeInstructions extends Phaser.Scene {
 
     displayInstructions() {
         // Add instructions text
-        const instructionsText = this.add.text(this.game.config.width / 2, this.game.config.height / 2 + 100, "You've decided not to forgive and take revenge.\nNow, it's time to unleash your power.\nUse your arrow keys to move and push your bullies under the bus.", {
+        const instructionsText = this.add.text(this.game.config.width / 2, this.game.config.height / 2 + 150, "You've decided not to forgive and take revenge.\nNow, it's time to unleash your power.\nUse your arrow keys to move and push your bullies under the bus.", {
             font: "24px Arial",
             fill: "#000000",
-            stroke: "#ffffff",
-            strokeThickness: 5,
+            stroke: "#ff0000",
+            strokeThickness: 2,
             align: "center"
         });
         instructionsText.setOrigin(0.5);
@@ -43,8 +43,8 @@ class RevengeInstructions extends Phaser.Scene {
         // Add "Next" button text
         const buttonText = this.add.text(this.game.config.width - 150, this.game.config.height - 50, "Let the revenge begin!", {
             font: "20px Arial",
-            fill: "#000000",
-            backgroundColor: "#ffffff",
+            fill: "#ff0000",
+            backgroundColor: "#000000",
             padding: {
                 x: 10,
                 y: 5
