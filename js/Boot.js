@@ -46,7 +46,7 @@ class Boot extends Phaser.Scene {
         // Load the boom sound effect file
         this.load.audio('boom', 'assets/sounds/boom.mp3');
 
-        
+
         // Load revenge instructions background image
         this.load.image(`revenge instructions`, `assets/images/revengeinstructions.png`);
         // Load street image
@@ -103,7 +103,7 @@ class Boot extends Phaser.Scene {
         this.load.audio('hell music', 'assets/sounds/hellmusic.mp3');
 
         this.load.on(`complete`, () => {
-            this.scene.start(`hell instructions`);
+            this.scene.start(`title`);
         });
     }
 
