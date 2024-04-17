@@ -52,7 +52,7 @@ class Hell extends Phaser.Scene {
         this.physics.add.overlap(this.fire, this.woodsGroup, this.handleFireWoodCollision, null, this);
 
         // Play the hell music
-        this.sound.play('hell music', { loop: true });
+        this.sound.play('hell-music', { loop: true });
 
     }
 
@@ -192,7 +192,7 @@ class Hell extends Phaser.Scene {
         // Check if there are no more woods on the screen
         if (this.woodsGroup.countActive() === 0) {
             // Stop the music
-            this.sound.stopByKey('hell music');
+            this.sound.stopByKey('hell-music');
             // Transition to the "SecondChance" scene
             this.scene.start('SecondChance');
         }

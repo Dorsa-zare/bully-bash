@@ -100,7 +100,7 @@ class Boot extends Phaser.Scene {
         // Load the fire image for hell scene
         this.load.image(`fire`, `assets/images/fire.gif`);
         // Load the audio file
-        this.load.audio('hell music', 'assets/sounds/hellmusic.mp3');
+        this.load.audio('hell-music', 'assets/sounds/hellmusic.mp3');
 
         this.load.on(`complete`, () => {
             this.scene.start(`title`);
