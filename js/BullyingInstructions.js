@@ -1,7 +1,7 @@
 class BullyingInstructions extends Phaser.Scene {
     constructor() {
         super({
-            key: 'bullying instructions'
+            key: 'bullying-instructions'
         });
         this.step = 1; // Track the current step of instructions
     }

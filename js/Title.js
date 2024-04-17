@@ -18,7 +18,7 @@ class Title extends Phaser.Scene {
         // Listen for pointer down event on the 'start' image
         startImage.on('pointerdown', () => {
             // Change scene to the bullying scene
-            this.scene.start('bullying instructions');
+            this.scene.start('bullying-instructions');
         });
 
 
