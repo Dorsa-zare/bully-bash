@@ -11,59 +11,58 @@ class Limbo extends Phaser.Scene {
         // Set up physics
         this.physics.world.setBounds(0, 0, this.game.config.width, this.game.config.height + 200);
         this.physics.world.gravity.y = 500; // Set gravity
-
+    
         // Add the graveyard image as the background
         const graveyard = this.add.image(0, this.game.config.height, 'graveyard').setOrigin(0, 0.84);
         graveyard.setScale(1);
-
+    
         // Display the avatar sprite
-        this.avatar = this.physics.add.sprite(this.game.config.width / 2, 510, 'avatar').setScale(2.2);
+        this.avatar = this.physics.add.sprite(this.game.config.width / 2, 730, 'avatar').setScale(2.2);
         this.avatar.setCollideWorldBounds(true);
         this.avatar.setBounce(0.2); // Add bounce to the avatar
         this.avatar.setAlpha(0.6); // Set alpha to 60%
         this.avatar.setTint(0xffffff);
         this.avatar.setDepth(4);
-
+    
         // Enable physics for the avatar
         this.physics.add.existing(this.avatar);
-
-
-
+    
         // Add introductory text
         this.addIntroText();
-
+    
         // Add "Next" button
         this.addNextButton();
-
+    
         // Create clouds
         this.createClouds();
-
+    
         // Call the method to create animations for avatar
         this.createAnimations();
-
+    
         // Display the final platform
         this.cloudplatform = this.physics.add.sprite(this.game.config.width / 2 - 150, 120, 'cloudplatform').setScale(0.8);
         this.cloudplatform.setImmovable(true); 
         this.cloudplatform.body.setAllowGravity(false);
-
+    
         // Set up collision between avatar and cloud platform
         this.physics.add.collider(this.avatar, this.cloudplatform, this.onCloudPlatformCollision, null, this);
-
+    
         // Create a group for bullies
         this.bulliesGroup = this.add.group();
-
+    
         // Add bullies to the group with specific positions
         this.addBullies();
-
+    
         // Set up keyboard input for player movement
         this.cursors = this.input.keyboard.createCursorKeys();
-
+    
         // Initialize the camera's y position
         this.cameraY = this.avatar.y;
-
+    
         // Play the limbo music (Myself by Ramin Djawadi)
-        this.sound.play('limbo music', { loop: true, volume:10 });
+        this.sound.play('limbo music', { loop: true, volume: 10 });
     }
+    
 
 
 

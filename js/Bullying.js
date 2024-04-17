@@ -64,7 +64,7 @@ class Bullying extends Phaser.Scene {
 
         this.headphonesGroup = this.physics.add.group();
         this.timerEvent = this.time.addEvent({
-            delay: 7000, // 7 seconds
+            delay: 6000, // 6 seconds
             callback: this.generateHeadphones,
             callbackScope: this,
         });
@@ -149,11 +149,11 @@ class Bullying extends Phaser.Scene {
 
 
     generateHeadphones() {
-        const x = Phaser.Math.Between(50, 700);
+        const x = Phaser.Math.Between(100, 600);
         const headphones = this.headphonesGroup.create(x, 0, 'headphones');
         headphones.setScale(0.15);
-        headphones.setVelocityY(50); //Velocity to make headphones fall
-        headphones.setGravityY(200); // Apply gravity to the headphones
+        headphones.setVelocityY(30); //Velocity to make headphones fall
+        headphones.setGravityY(140); // Apply gravity to the headphones
         this.headphonesGroup.setDepth(5);
     }
 
@@ -175,7 +175,7 @@ class Bullying extends Phaser.Scene {
         // Check if the music is not already playing
         if (!this.musicPlaying) {
             // Play the collision sound
-            this.sound.play('music');
+            this.sound.play('music', { volume: 0.5 });
             // Set the flag to indicate that music is playing
             this.musicPlaying = true;
         }
@@ -185,19 +185,19 @@ class Bullying extends Phaser.Scene {
     // Check if heart is visible after 20 seconds
     checkHeartVisibility() {
         let heartVisible = false;
-    
+
         // Check if any heart is visible
         this.heartsGroup.getChildren().forEach((heart) => {
             if (heart.visible) {
                 heartVisible = true;
             }
         });
-    
+
         // Create a semi-transparent white window
         const windowGraphics = this.add.graphics();
         windowGraphics.fillStyle(0xffffff, 0.5); // White color with 50% opacity
         windowGraphics.fillRect(150, 100, 500, 250); // Position and size of the window
-    
+
         if (heartVisible) {
             // Display text indicating the heart has been broken
             this.brokenHeartText = this.add.text(this.game.config.width / 2, 220, "Your heart has been broken by the bullies.\nYou will have the chance to get revenge now.", {
@@ -215,12 +215,12 @@ class Bullying extends Phaser.Scene {
             });
             this.ignoredBulliesText.setOrigin(0.5);
         }
-    
+
         // Add clickable text options
         this.addClickableText();
     }
-    
-    
+
+
 
 
     // Add clickable text options
@@ -239,6 +239,7 @@ class Bullying extends Phaser.Scene {
         getRevengeText.setOrigin(0.5);
         getRevengeText.setInteractive(); // Make text clickable
         getRevengeText.on('pointerdown', () => {
+            this.sound.stopAll();
             // Transition to the play scene
             this.scene.start('revenge instructions');
         });
@@ -257,6 +258,7 @@ class Bullying extends Phaser.Scene {
         forgiveText.setOrigin(0.5);
         forgiveText.setInteractive(); // Make text clickable
         forgiveText.on('pointerdown', () => {
+            this.sound.stopAll();
             // Transition to the Forgiveness scene
             this.scene.start('forgiveness');
         });
