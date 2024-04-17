@@ -118,7 +118,7 @@ class Verdict extends Phaser.Scene {
             // Stop the verdict music
             this.sound.stopByKey('verdict music');
             // Transition to the "hell" scene
-            this.scene.start('hell instructions');
+            this.scene.start('hell-instructions');
         });
     }
 

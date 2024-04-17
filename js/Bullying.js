@@ -241,7 +241,7 @@ class Bullying extends Phaser.Scene {
         getRevengeText.on('pointerdown', () => {
             this.sound.stopAll();
             // Transition to the play scene
-            this.scene.start('revenge instructions');
+            this.scene.start('revenge-instructions');
         });
 
         // Add "Forgive" text

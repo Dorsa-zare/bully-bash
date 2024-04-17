@@ -1,7 +1,7 @@
 class RevengeInstructions extends Phaser.Scene {
     constructor() {
         super({
-            key: 'revenge instructions'
+            key: 'revenge-instructions'
         });
     }
 

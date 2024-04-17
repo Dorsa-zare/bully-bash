@@ -1,7 +1,7 @@
 class HellInstructions extends Phaser.Scene {
     constructor() {
         super({
-            key: 'hell instructions'
+            key: 'hell-instructions'
         });
     }
 
