@@ -30,8 +30,8 @@ class SecondChance extends Phaser.Scene {
         // Add the "Next" button
         this.displayNextButton();
 
-          // Play the verdict music 
-          this.sound.play('verdict music', { loop: true });
+        // Play the verdict music 
+        this.sound.play('verdict music', { loop: true });
 
     }
 
@@ -84,17 +84,14 @@ class SecondChance extends Phaser.Scene {
             font: "30px Arial",
             fill: "#000000", // Black color
             backgroundColor: "#ffffff",
-            padding: {
-                x: 10,
-                y: 5
-            },
+
             align: "center"
         });
         buttonText.setOrigin(0.5);
         buttonText.setInteractive(); // Make text clickable
         buttonText.on('pointerdown', () => {
-             // Stop the music
-             this.sound.stopByKey('verdict music');
+            // Stop the music
+            this.sound.stopByKey('verdict music');
             // Transition to the "hell" scene
             this.scene.start('bullying');
         });

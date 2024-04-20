@@ -46,10 +46,6 @@ class BullyingInstructions extends Phaser.Scene {
             font: "24px Arial",
             fill: "#000000",
             backgroundColor: "#ffffff",
-            padding: {
-                x: 10,
-                y: 5
-            },
             align: "center"
         });
         buttonText.setOrigin(0.5);

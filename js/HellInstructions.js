@@ -91,10 +91,6 @@ class HellInstructions extends Phaser.Scene {
             font: "24px Arial",
             fill: "#000000",
             backgroundColor: "#FFFFFF",
-            padding: {
-                x: 10,
-                y: 5
-            },
             align: "center"
         });
         buttonText.setDepth(5);

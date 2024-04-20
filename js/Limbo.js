@@ -203,10 +203,6 @@ onCloudPlatformCollision(avatar, cloudplatform) {
             fontSize: 20,
             color: '#000000',
             backgroundColor: '#ffffff',
-            padding: {
-                x: 10,
-                y: 5
-            }
         });
         this.nextButton.setOrigin(0.5);
         this.nextButton.setInteractive(); // Make the button clickable

@@ -230,10 +230,6 @@ class Bullying extends Phaser.Scene {
             font: "20px Arial",
             fill: "#ffffff", // White color
             backgroundColor: "#000000",
-            padding: {
-                x: 20,
-                y: 10
-            },
             align: "center"
         });
         getRevengeText.setOrigin(0.5);
@@ -249,10 +245,10 @@ class Bullying extends Phaser.Scene {
             font: "20px Arial",
             fill: "#ffffff", // White color
             backgroundColor: "#000000",
-            padding: {
-                x: 20,
-                y: 10
-            },
+            // padding: {
+            //     x: 20,
+            //     y: 10
+            // },
             align: "center"
         });
         forgiveText.setOrigin(0.5);

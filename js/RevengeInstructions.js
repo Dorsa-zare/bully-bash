@@ -45,10 +45,6 @@ class RevengeInstructions extends Phaser.Scene {
             font: "20px Arial",
             fill: "#ff0000",
             backgroundColor: "#000000",
-            padding: {
-                x: 10,
-                y: 5
-            },
             align: "center"
         });
         buttonText.setDepth(5);
