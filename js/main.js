@@ -17,7 +17,7 @@ let config = {
     physics: {
         default: `arcade`
     },
-    scene: [Boot, Title, BullyingInstructions, Bullying, Forgiveness, RevengeInstructions, Revenge, Limbo, Verdict, HellInstructions, Hell, SecondChance]
+    scene: [Boot, Title, BullyingInstructions, Bullying, Forgiveness, RevengeInstructions, Revenge, Limbo, Verdict, HellInstructions, Hell, SecondChance, Decision]
 };
 
 let game = new Phaser.Game(config);
