@@ -90,8 +90,8 @@ class SecondChance extends Phaser.Scene {
         buttonText.setOrigin(0.5);
         buttonText.setInteractive(); // Make text clickable
         buttonText.on('pointerdown', () => {
-            // // Stop the music
-            // this.sound.stopByKey('verdict music');
+            // Stop the music
+            this.sound.stopByKey('verdict music');
             // Transition to the "hell" scene
             this.scene.start('bullying');
         });

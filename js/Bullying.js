@@ -254,7 +254,7 @@ class Bullying extends Phaser.Scene {
         forgiveText.setOrigin(0.5);
         forgiveText.setInteractive(); // Make text clickable
         forgiveText.on('pointerdown', () => {
-            this.sound.stopAll();
+            // this.sound.stopAll();
             // Transition to the Forgiveness scene
             this.scene.start('forgiveness');
         });
