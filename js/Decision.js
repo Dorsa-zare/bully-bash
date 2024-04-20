@@ -28,6 +28,12 @@ class Decision extends Phaser.Scene {
 
 
     DisplayText() {
+        // Create a semi-transparent white window
+        const windowGraphics = this.add.graphics();
+        windowGraphics.fillStyle(0xffffff, 0.5); // White color with 50% opacity
+        windowGraphics.fillRect(150, 100, 500, 250); // Position and size of the window
+
+
         // Display text indicating the heart has been broken
         this.brokenHeartText = this.add.text(this.game.config.width / 2, 220, "Your heart has been broken by the bullies.\nYou will have the chance to get revenge now.", {
             font: "20px Arial",

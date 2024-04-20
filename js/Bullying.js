@@ -34,10 +34,10 @@ class Bullying extends Phaser.Scene {
 
         // Generate bully words and repeat
         this.timerEvent = this.time.addEvent({
-            delay: 1000, // Generate bully words every second
+            delay: 500, // Generate bully words every second
             callback: this.generateBullyWords,
             callbackScope: this,
-            repeat: 20 // Repeat the event 20 times 
+            repeat: 41 // Repeat the event 41 times 
         });
 
         // Set collision detection between avatar and canvas bounds
@@ -111,7 +111,7 @@ class Bullying extends Phaser.Scene {
             // Enable physics for the bully word
             this.physics.world.enable(bullyWord);
             // Set gravity for the bully word
-            bullyWord.body.setGravityY(150);
+            bullyWord.body.setGravityY(200);
             // Increase the index for the next word
             this.bullyWordIndex++;
         } else {
