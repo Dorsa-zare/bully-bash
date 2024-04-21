@@ -226,10 +226,11 @@ class Bullying extends Phaser.Scene {
     // Add clickable text options
     addClickableText() {
         // Add "Get Revenge" text
-        const getRevengeText = this.add.text(this.game.config.width / 2 + 100, 300, "Get Revenge", {
+        const getRevengeText = this.add.text(this.game.config.width / 2 + 90, 320, "Get Revenge", {
             font: "20px Arial",
-            fill: "#ffffff", // White color
-            backgroundColor: "#000000",
+            fill: "#ffffff", // white color
+            stroke: "#000000", // Black outline
+            strokeThickness: 15,// Thickness of the outline
             align: "center"
         });
         getRevengeText.setOrigin(0.5);
@@ -241,14 +242,11 @@ class Bullying extends Phaser.Scene {
         });
 
         // Add "Forgive" text
-        const forgiveText = this.add.text(this.game.config.width / 2 - 100, 300, "Forgive", {
+        const forgiveText = this.add.text(this.game.config.width / 2 - 90, 320, "Forgive", {
             font: "20px Arial",
-            fill: "#ffffff", // White color
-            backgroundColor: "#000000",
-            // padding: {
-            //     x: 20,
-            //     y: 10
-            // },
+            fill: "#ffffff", // white color
+            stroke: "#000000", // Black outline
+            strokeThickness: 15,// Thickness of the outline
             align: "center"
         });
         forgiveText.setOrigin(0.5);

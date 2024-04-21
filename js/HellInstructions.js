@@ -89,8 +89,9 @@ class HellInstructions extends Phaser.Scene {
         // Add "Next" button text
         const buttonText = this.add.text(this.game.config.width - 150, this.game.config.height - 100, "Next", {
             font: "24px Arial",
-            fill: "#000000",
-            backgroundColor: "#FFFFFF",
+            fill: "#000000", // white color
+            stroke: "#ffffff", // Black outline
+            strokeThickness: 20,// Thickness of the outline
             align: "center"
         });
         buttonText.setDepth(5);

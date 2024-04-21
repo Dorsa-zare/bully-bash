@@ -35,7 +35,7 @@ class Decision extends Phaser.Scene {
 
 
         // Display text indicating the heart has been broken
-        this.brokenHeartText = this.add.text(this.game.config.width / 2, 220, "Your heart has been broken by the bullies.\nYou will have the chance to get revenge now.", {
+        this.brokenHeartText = this.add.text(this.game.config.width / 2, 220, "Your heart has been broken by the bullies.\nYou will have the chance to forgive them or get revenge.", {
             font: "20px Arial",
             fill: "#000000",
             align: "center"
@@ -56,10 +56,11 @@ class Decision extends Phaser.Scene {
     // Add clickable text options
     addClickableText() {
         // Add "Get Revenge" text
-        const getRevengeText = this.add.text(this.game.config.width / 2 + 100, 330, "Get Revenge", {
+        const getRevengeText = this.add.text(this.game.config.width / 2 + 100, 320, "Get Revenge", {
             font: "20px Arial",
-            fill: "#ffffff", // White color
-            backgroundColor: "#000000",
+            fill: "#ffffff", // Red color
+            stroke: "#000000", // Black outline
+            strokeThickness: 20,// Thickness of the outline
             align: "center"
         });
         getRevengeText.setOrigin(0.5);
@@ -71,14 +72,11 @@ class Decision extends Phaser.Scene {
         });
 
         // Add "Forgive" text
-        const forgiveText = this.add.text(this.game.config.width / 2 - 100, 330, "Forgive", {
+        const forgiveText = this.add.text(this.game.config.width / 2 - 100, 320, "Forgive", {
             font: "20px Arial",
-            fill: "#ffffff", // White color
-            backgroundColor: "#000000",
-            // padding: {
-            //     x: 20,
-            //     y: 10
-            // },
+            fill: "#ffffff", // Red color
+            stroke: "#000000", // Black outline
+            strokeThickness: 20,// Thickness of the outline
             align: "center"
         });
         forgiveText.setOrigin(0.5);

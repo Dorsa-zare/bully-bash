@@ -104,12 +104,9 @@ class Verdict extends Phaser.Scene {
         // Add "Next" button text
         const buttonText = this.add.text(this.game.config.width - 70, this.game.config.height - 50, "Next", {
             font: "24px Arial",
-            fill: "#ffffff", // White color
-            backgroundColor: "#000000",
-            padding: {
-                x: 10,
-                y: 5
-            },
+            fill: "#ffffff", // white color
+            stroke: "#000000", // Black outline
+            strokeThickness: 15,// Thickness of the outline
             align: "center"
         });
         buttonText.setOrigin(0.5);

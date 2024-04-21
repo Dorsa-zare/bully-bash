@@ -59,19 +59,19 @@ class SecondChance extends Phaser.Scene {
         });
 
         // Add each subsequent sentence after a delay of 2 seconds
-        this.time.delayedCall(1000, () => {
+        this.time.delayedCall(800, () => {
             text.text += "You've been a real trooper during your time in Hell,\n";
         });
 
-        this.time.delayedCall(3000, () => {
+        this.time.delayedCall(2200, () => {
             text.text += "and you've shown excellent cooperation with your bullies.\n";
         });
 
-        this.time.delayedCall(4000, () => {
+        this.time.delayedCall(3700, () => {
             text.text += "\nSo guess what?\n";
         });
 
-        this.time.delayedCall(6000, () => {
+        this.time.delayedCall(4500, () => {
             text.text += "\nWe're giving you a second chance!";
         });
     }
@@ -82,9 +82,9 @@ class SecondChance extends Phaser.Scene {
         // Add "Next" button text
         const buttonText = this.add.text(this.game.config.width - 80, this.game.config.height - 60, "Next", {
             font: "30px Arial",
-            fill: "#000000", // Black color
-            backgroundColor: "#ffffff",
-
+            fill: "#ffffff", // white color
+            stroke: "#000000", // Black outline
+            strokeThickness: 15,// Thickness of the outline
             align: "center"
         });
         buttonText.setOrigin(0.5);

@@ -24,7 +24,7 @@ class BullyingInstructions extends Phaser.Scene {
     }
 
     update() {
-        
+
     }
 
 
@@ -42,10 +42,11 @@ class BullyingInstructions extends Phaser.Scene {
 
     addNextButton() {
         // Add "Next" button text
-        const buttonText = this.add.text(this.game.config.width - 220, this.game.config.height - 170, "Next", {
-            font: "24px Arial",
-            fill: "#000000",
-            backgroundColor: "#ffffff",
+        const buttonText = this.add.text(this.game.config.width - 220, this.game.config.height - 180, "Next", {
+            font: "30px Arial",
+            fill: "#ffffff", // white color
+            stroke: "#000000", // Black outline
+            strokeThickness: 15,// Thickness of the outline
             align: "center"
         });
         buttonText.setOrigin(0.5);
