@@ -30,8 +30,9 @@ class Verdict extends Phaser.Scene {
         // Add bullies to the group with specific positions
         this.addBullies();
 
-        // Display dialogue bubbles
-        this.displayDialogue();
+        // Display dialogue 
+        this.displayFirstText();
+        this.displaySecondText();
 
         // Add the "Next" button
         this.addNextButton();
@@ -76,29 +77,29 @@ class Verdict extends Phaser.Scene {
         });
     }
 
-    displayDialogue() {
-        // Delayed function to display dialogue bubbles
-        this.time.delayedCall(1500, () => {
-            this.showDialogue("So, what's the verdict?", this.game.config.width / 2 - 200, this.game.config.height / 2 + 100);
-        }, [], this);
-
-        this.time.delayedCall(3000, () => {
-            this.showDialogue("Yall are going to hell for sure.", this.game.config.width / 2 + 50, this.game.config.height / 2);
-        }, [], this);
-
-        this.time.delayedCall(5000, () => {
-            this.showDialogue("Hell with my bullies?\nSounds like a blast.", this.game.config.width / 2 - 200, this.game.config.height / 2 + 100);
-        }, [], this);
+    displayFirstText() {
+        // Add the first sentence
+        const text = this.add.text(290, 300, "", {
+            font: "22px Arial",
+            fill: "#000000", // Black color
+        });
+        this.time.delayedCall(800, () => {
+            text.text += "Yall are going to hell for sure";
+        });
     }
 
 
-    showDialogue(text, posX, posY) {
-        // Create a dialogue bubble
-        const bubble = this.add.image(posX, posY, 'dialogueBubble').setScale(0.4);
-
-        // Add text to the dialogue bubble
-        const bubbleText = this.add.text(bubble.x - 100, bubble.y - 20, text, { font: "16px Arial", fill: "#000" });
+    displaySecondText() {
+        // Add the first sentence
+        const text = this.add.text(150, 380, "", {
+            font: "22px Arial",
+            fill: "#000000", // Black color
+        });
+        this.time.delayedCall(1400, () => {
+            text.text += "Hell with my bullies?\nSounds like a blast";
+        });
     }
+
 
     addNextButton() {
         // Add "Next" button text
